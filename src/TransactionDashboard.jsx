@@ -74,20 +74,24 @@ function TransactionDashboard() {
           </tr>
         </thead>
         <tbody>
-          {transactions.map((transaction) => (
-            <tr key={transaction.id}>
-              <td>{transaction.id}</td>
-              <td>{transaction.title}</td>
-              <td>{transaction.description}</td>
-              <td>{transaction.price}</td>
-              <td>{transaction.category}</td>
-              <td>{transaction.sold ? 'Yes' : 'No'}</td>
-              <td><img src={transaction.image} alt={transaction.title} style={{ width: '100%', height: '100%' }} /></td>
+          {transactions.length === 0 ? (
+            <tr>
+              <td colSpan="7" style={{ textAlign: 'center' }}>Loading...</td>
             </tr>
-          ))}
+          ) : (
+            transactions.map((transaction) => (
+              <tr key={transaction.id}>
+                <td>{transaction.id}</td>
+                <td>{transaction.title}</td>
+                <td>{transaction.description}</td>
+                <td>{transaction.price}</td>
+                <td>{transaction.category}</td>
+                <td>{transaction.sold ? 'Yes' : 'No'}</td>
+                <td><img src={transaction.image} alt={transaction.title} style={{ width: '100%', height: '100%' }} /></td>
+              </tr>
+            ))
+          )}
         </tbody>
-
-
       </table>
       <div className="pagination">
         <span>Page No: {pageNo}</span>
